@@ -34,20 +34,23 @@ pip install -r requirements.txt
 * Isi fungsi `scrap` dengan proses scraping yang sudah Bapak/Ibu lakukan di notebook. 
 
 ```python
-table = soup.find(___)
-tr = table.find_all(___)
+table = soup.find('div', attrs={'class':'lister list detail sub-list'}))
+judul = table.find_all('h3', attrs={'class':'lister-item-header'})[0].find('a').text
+imdb_rating = table.find_all('div', attrs={'class':'inline-block ratings-imdb-rating'})[0].find('strong').text
+metascore = table.find_all('div', attrs={'class':'ratings-bar'})[4]
+vote = table.find_all('div', attrs={'class':'ratings-bar'})[0].find('meta', attrs={'itemprop':'ratingCount'})['content']
 ```
 
 * Isi bagian ini untuk menyimpan hasil scrap yang Bapak/Ibu buat menjadi sebuah dataframe.
 
 ```python
-df = pd.DataFrame(name of your tupple, columns = (name of the columns))
+df = pd.DataFrame(temp, columns=('Title', 'IMDB_Rating', 'Metascore','Total_Vote'))
 ```
 
 * Terakhir Bapak/Ibu dapat menggunakan fungsi `scrap` dengan cara mengisi bagian berikut dengan link web yang Bapak/Ibu scrap.
 
 ```python
-df = scrap(___) #insert url here
+df = scrap('https://www.imdb.com/search/title/?release_date=2021-01-01,2021-12-31') #insert url here
 ```
 
 * Bapak/Ibu juga dapat bermain dengan UI nya pada `index.html` yang dimana Bapak/Ibu dapat mengikuti comment yang ada untuk mengetahui bagian mana yang dapat diubah. 
